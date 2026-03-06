@@ -1,0 +1,213 @@
+:root {
+  --bg: #f3f8f5;
+  --card: #ffffff;
+  --primary: #1e7f5c;
+  --primary-dark: #146042;
+  --danger: #b12f2f;
+  --danger-dark: #8a1f1f;
+  --text: #1f2d26;
+  --muted: #5f7268;
+  --border: #d4e3db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  background: radial-gradient(circle at top right, #def4ea, var(--bg));
+  color: var(--text);
+}
+
+.app {
+  width: min(900px, 92vw);
+  margin: 24px auto 36px;
+  display: grid;
+  gap: 14px;
+}
+
+.hero {
+  padding: 16px 20px;
+}
+
+h1,
+h2 {
+  margin: 0 0 8px;
+}
+
+.hero p,
+p {
+  margin: 0;
+}
+
+.card,
+.alert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(27, 76, 52, 0.05);
+}
+
+.alert-card {
+  border-color: #efc9c9;
+  background: #fff6f6;
+}
+
+.alert-card h2 {
+  color: var(--danger);
+}
+
+.strict-card {
+  border-color: #ebb5b5;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+input[type="number"],
+input[type="time"] {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 8px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: #5d6f66;
+}
+
+.btn-success {
+  background: #2f936d;
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+.btn-danger:hover {
+  background: var(--danger-dark);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  color: var(--danger-dark);
+  border: 1px solid #d49c9c;
+  text-decoration: none;
+}
+
+.btn-danger-outline:hover {
+  background: #fff0f0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.progress {
+  color: #1d664b;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.tips {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.checks {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.checks label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.risk-score {
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--danger-dark);
+}
+
+.emergency-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  bottom: 20px;
+  background: #103d2c;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 16px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .app {
+    margin-top: 12px;
+  }
+}

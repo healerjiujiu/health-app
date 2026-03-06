@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e7f5c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>糖尿病照护提醒</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon-192.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <h1>糖尿病照护提醒</h1>
+        <p>帮助家人按时喝水、规律饮食、减少高风险行为。</p>
+      </header>
+
+      <section class="alert-card" role="alert">
+        <h2>重要提醒</h2>
+        <p>
+          目前你描述的情况（血糖 17+、尿酮体阳性、长期饮酒吸烟）风险较高。此应用仅做生活提醒，不能替代医生诊疗。
+          如果出现恶心、呕吐、乏力、嗜睡、呼吸急促或意识异常，请立即就医。
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>通知权限</h2>
+        <p>开启后可收到系统通知（手机锁屏也可见，取决于浏览器设置）。</p>
+        <div class="actions">
+          <button id="enableNotificationBtn" class="btn">开启通知</button>
+          <button id="installAppBtn" class="btn btn-secondary" disabled>安装到手机桌面</button>
+        </div>
+        <p id="permissionStatus" class="muted"></p>
+        <p id="installStatus" class="muted"></p>
+      </section>
+
+      <section class="card">
+        <h2>喝水提醒</h2>
+        <div class="grid-2">
+          <label>
+            每次喝水量（ml）
+            <input id="waterAmount" type="number" min="50" step="50" value="250" />
+          </label>
+          <label>
+            提醒间隔（分钟）
+            <input id="waterInterval" type="number" min="15" step="5" value="60" />
+          </label>
+        </div>
+        <div class="actions">
+          <button id="startWaterBtn" class="btn">开始喝水提醒</button>
+          <button id="stopWaterBtn" class="btn btn-secondary">停止喝水提醒</button>
+          <button id="drinkNowBtn" class="btn btn-success">我刚喝了水</button>
+        </div>
+        <p id="waterStatus" class="muted"></p>
+        <p id="waterProgress" class="progress"></p>
+      </section>
+
+      <section class="card">
+        <h2>饮食提醒</h2>
+        <p>建议规律三餐，控糖、限酒、少油少盐。可自定义提醒时间。</p>
+        <div class="grid-2">
+          <label>
+            早餐提醒
+            <input id="breakfastTime" type="time" value="07:30" />
+          </label>
+          <label>
+            午餐提醒
+            <input id="lunchTime" type="time" value="12:00" />
+          </label>
+          <label>
+            晚餐提醒
+            <input id="dinnerTime" type="time" value="18:00" />
+          </label>
+          <label>
+            加餐提醒（可选）
+            <input id="snackTime" type="time" value="15:30" />
+          </label>
+        </div>
+        <div class="actions">
+          <button id="saveDietBtn" class="btn">保存饮食提醒</button>
+        </div>
+        <p id="dietStatus" class="muted"></p>
+      </section>
+
+      <section class="alert-card strict-card">
+        <h2>高风险警醒模式</h2>
+        <p>适用于“不重视、不执行”的情况：会根据当日执行情况自动升级警告频率。</p>
+        <label class="inline-check">
+          <input id="strictModeEnabled" type="checkbox" checked />
+          开启高风险警醒模式（建议保持开启）
+        </label>
+        <div class="actions">
+          <button id="ackWarningBtn" class="btn btn-danger">我已阅读今天的警醒</button>
+          <button id="emergencyBtn" class="btn btn-danger-outline">出现不适，立即就医提醒</button>
+          <a class="btn btn-danger-outline emergency-link" href="tel:120">紧急情况拨打 120</a>
+        </div>
+        <p id="strictStatus" class="muted"></p>
+        <p id="riskScore" class="risk-score"></p>
+      </section>
+
+      <section class="card">
+        <h2>今日饮食建议</h2>
+        <ul class="tips">
+          <li>主食定量：优先全谷物，避免含糖饮料和甜点。</li>
+          <li>每餐蔬菜占一半，蛋白质选鱼、豆制品、瘦肉。</li>
+          <li>避免空腹饮酒；有糖尿病并发症风险时建议完全戒酒。</li>
+          <li>限制吸烟，尽快开始戒烟计划。</li>
+          <li>外出带水杯，少量多次饮水。</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>今日记录</h2>
+        <div class="checks">
+          <label><input type="checkbox" id="checkNoAlcohol" /> 今天不喝酒</label>
+          <label><input type="checkbox" id="checkNoSmoking" /> 今天不吸烟</label>
+          <label><input type="checkbox" id="checkMeasureSugar" /> 已监测血糖</label>
+          <label><input type="checkbox" id="checkHadWater" /> 已按提醒喝水</label>
+        </div>
+      </section>
+
+      <section id="toast" class="toast" aria-live="polite"></section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
